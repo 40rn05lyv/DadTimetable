@@ -1,31 +1,38 @@
 package org.lovecorp.timetable.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Subject {
 
-    private Long id;
+    private static int idCounter = 0;
+
+    private int id;
     private String name;
-    private String shortName;
-    private List<Lector> possibleLectors;
-    private boolean specializedRoomOnly;
-    private List<Room> specializedRooms;
+    // private String shortName;
+    // private List<Lector> possibleLectors;
+    private boolean hasTraditionalRooms;
+    private List<Room> traditionalRooms;
     private List<Room> impossibleRooms;
 
-    public boolean isSpecializedRoomOnly() {
-        return specializedRoomOnly;
+    public Subject() {
+        this.id = idCounter++;
     }
 
-    public void setSpecializedRoomOnly(boolean specializedRoomOnly) {
-        this.specializedRoomOnly = specializedRoomOnly;
+    public boolean hasTraditionalRooms() {
+        return hasTraditionalRooms;
     }
 
-    public List<Room> getSpecializedRooms() {
-        return specializedRooms;
+    public void setHasTraditionalRooms(boolean hasTraditionalRooms) {
+        this.hasTraditionalRooms = hasTraditionalRooms;
     }
 
-    public void setSpecializedRooms(List<Room> specializedRooms) {
-        this.specializedRooms = specializedRooms;
+    public List<Room> getTraditionalRooms() {
+        return traditionalRooms;
+    }
+
+    public void setTraditionalRooms(List<Room> traditionalRooms) {
+        this.traditionalRooms = traditionalRooms;
     }
 
     public List<Room> getImpossibleRooms() {
@@ -36,20 +43,14 @@ public class Subject {
         this.impossibleRooms = impossibleRooms;
     }
 
-    public List<Lector> getPossibleLectors() {
-        return possibleLectors;
-    }
-
-    public void setPossibleLectors(List<Lector> possibleLectors) {
-        this.possibleLectors = possibleLectors;
-    }
-
-    public Long getId() {
+    /*
+     * public List<Lector> getPossibleLectors() { return possibleLectors; }
+     * 
+     * public void setPossibleLectors(List<Lector> possibleLectors) {
+     * this.possibleLectors = possibleLectors; }
+     */
+    public int getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -60,12 +61,25 @@ public class Subject {
         this.name = name;
     }
 
-    public String getShortName() {
-        return shortName;
+    public void addTraditionalRoom(Room room) {
+        if (this.traditionalRooms == null) {
+            this.traditionalRooms = new ArrayList<Room>();
+        }
+        this.traditionalRooms.add(room);
     }
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
+    public void addImpossibleRoom(Room room) {
+        if (this.impossibleRooms == null) {
+            this.impossibleRooms = new ArrayList<Room>();
+        }
+        this.impossibleRooms.add(room);        
     }
+
+    /*
+     * public String getShortName() { return shortName; }
+     * 
+     * public void setShortName(String shortName) { this.shortName = shortName;
+     * }
+     */
 
 }

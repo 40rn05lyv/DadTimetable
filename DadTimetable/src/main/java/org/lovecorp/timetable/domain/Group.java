@@ -1,14 +1,22 @@
 package org.lovecorp.timetable.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
 
-    private Long id;
+    private static int idCounter = 0;
+
+    private int id;
     private String name;
     private List<GroupSubject> subjects;
     private Integer numberOfStudents;
     private GroupType groupType;
+
+    public Group() {
+        this.id = idCounter++;
+        this.subjects = new ArrayList<GroupSubject>();
+    }
 
     public class GroupSubject {
         private Subject subject;
@@ -16,7 +24,10 @@ public class Group {
         private Integer hours;
 
         public GroupSubject(Subject subject, Lector lector, Integer hours) {
-            super();
+            if (subject == null || lector == null || hours == null) {
+                throw new IllegalArgumentException();
+            }
+
             this.subject = subject;
             this.lector = lector;
             this.hours = hours;
@@ -56,12 +67,8 @@ public class Group {
         this.groupType = groupType;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -78,6 +85,14 @@ public class Group {
 
     public void setSubjects(List<GroupSubject> subjects) {
         this.subjects = subjects;
+    }
+
+    public Integer getNumberOfStudents() {
+        return numberOfStudents;
+    }
+
+    public void setNumberOfStudents(Integer numberOfStudents) {
+        this.numberOfStudents = numberOfStudents;
     }
 
 }

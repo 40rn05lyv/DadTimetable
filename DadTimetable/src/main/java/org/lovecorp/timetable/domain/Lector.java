@@ -2,9 +2,15 @@ package org.lovecorp.timetable.domain;
 
 public class Lector {
 
-    private Long id;
+	private static int idCounter = 0;
+	
+    private int id;
     private String name;
     private boolean coworker;
+    
+    public Lector() {
+		this.id = idCounter++;
+	}
 
     public boolean isCoworker() {
         return coworker;
@@ -14,12 +20,8 @@ public class Lector {
         this.coworker = coworker;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

@@ -1,24 +1,17 @@
 package org.lovecorp.timetable.domain;
 
-public class GroupType {
+public enum GroupType {
 
-    private Long id;
-    private Integer lessonsPerWeek;
+    WORKERS(30), YOUNGERS(36);
 
-    public Long getId() {
-        return id;
-    }
+    private int lessonsPerWeek;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getLessonsPerWeek() {
-        return lessonsPerWeek;
-    }
-
-    public void setLessonsPerWeek(Integer lessonsPerWeek) {
+    private GroupType(int lessonsPerWeek) {
         this.lessonsPerWeek = lessonsPerWeek;
+    }
+
+    public int getLessonsPerWeek() {
+        return lessonsPerWeek;
     }
 
 }
