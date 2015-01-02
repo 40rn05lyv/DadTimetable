@@ -21,8 +21,8 @@ public class Timetable implements Solution<HardSoftScore> {
     private List<Lector> lectors;
     private List<Room> rooms;
     private List<Subject> subjects;
-    private List<Period> periods;
-    private List<Date> dates;
+    //private List<Period> periods;
+    //private List<Date> dates;
 
     private List<Lesson> lessons;
 
@@ -32,16 +32,16 @@ public class Timetable implements Solution<HardSoftScore> {
         this.lectors = new ArrayList<Lector>();
         this.rooms = new ArrayList<Room>();
         this.subjects = new ArrayList<Subject>();
-        this.dates = new ArrayList<Date>();
+        //this.dates = new ArrayList<Date>();
         this.lessons = new ArrayList<Lesson>();
-        this.periods = new ArrayList<Period>();
+        /*this.periods = new ArrayList<Period>();
         this.periods.add(Period.FIRST);
         this.periods.add(Period.SECOND);
         this.periods.add(Period.THIRD);
         this.periods.add(Period.FOURTH);
         this.periods.add(Period.FIFTH);
         this.periods.add(Period.SIXTH);
-        this.periods.add(Period.SEVENTH);
+        this.periods.add(Period.SEVENTH);*/
     }
     
     @ValueRangeProvider(id = "periodList")
@@ -122,8 +122,13 @@ public class Timetable implements Solution<HardSoftScore> {
     }
 
     public Collection<? extends Object> getProblemFacts() {
-        // TODO Auto-generated method stub
-        return null;
+        Collection<Object> result = new ArrayList<Object>();
+        result.add(this.educationalProcessSchedule);
+        result.addAll(this.groups);
+        result.addAll(this.lectors);
+        result.addAll(this.rooms);
+        result.addAll(this.subjects);
+        return result;
     }
 
     public Group getGroup(String groupName) {

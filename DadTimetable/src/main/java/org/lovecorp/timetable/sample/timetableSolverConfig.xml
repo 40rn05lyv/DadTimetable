@@ -9,19 +9,32 @@
   <!-- Score configuration -->
   <scoreDirectorFactory>
     <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
-    <easyScoreCalculatorClass>org.lovecorp.timetable.domain.TimetableEasyScoreCalculator</easyScoreCalculatorClass>
-    <!--<scoreDrl>org/optaplanner/examples/cloudbalancing/solver/cloudBalancingScoreRules.drl</scoreDrl>-->
-    <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
+    <!-- <easyScoreCalculatorClass>org.lovecorp.timetable.domain.TimetableEasyScoreCalculator</easyScoreCalculatorClass> -->
+    <scoreDrl>org/lovecorp/timetable/sample/timetableScoreRules.drl</scoreDrl>
+    <!-- <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend> -->
   </scoreDirectorFactory>
 
   <!-- Optimization algorithms configuration -->
   <termination>
-    <secondsSpentLimit>120</secondsSpentLimit>
+    <secondsSpentLimit>30</secondsSpentLimit>
   </termination>
   <constructionHeuristic>
     <constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
+    <entitySorterManner>DECREASING_DIFFICULTY_IF_AVAILABLE</entitySorterManner>
   </constructionHeuristic>
   <localSearch>
+  	<unionMoveSelector>
+    	<changeMoveSelector>
+	    	<valueSelector>
+				<variableName>room</variableName>    		
+    		</valueSelector>
+    	</changeMoveSelector>
+    	<changeMoveSelector>
+	    	<valueSelector>
+				<variableName>period</variableName>    		
+    		</valueSelector>
+    	</changeMoveSelector>
+    </unionMoveSelector>
     <acceptor>
       <entityTabuSize>7</entityTabuSize>
     </acceptor>

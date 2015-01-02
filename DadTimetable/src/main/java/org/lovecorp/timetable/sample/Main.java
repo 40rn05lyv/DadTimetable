@@ -15,7 +15,7 @@ public class Main {
         SolverFactory solverFactory = SolverFactory.createFromXmlResource("org/lovecorp/timetable/sample/timetableSolverConfig.xml");
         Solver solver = solverFactory.buildSolver();
 
-        // Load a problem with 400 computers and 1200 processes
+        // Load a problem
         Timetable unsolvedCloudBalance = new TimetableReader().read(new File("D:\\Development\\DadTimetable\\examples\\Example.xls"));
 
         // Solve the problem

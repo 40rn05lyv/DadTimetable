@@ -1,0 +1,12 @@
+import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder;
+import org.lovecorp.timetable.domain.Lesson;
+
+global HardSoftScoreHolder scoreHolder;
+
+rule "simultaneousLessonsInTheSameRoom"
+	when
+		Lesson($id: id, $room: room)
+		Lesson(id != $id, room.id == $room.id)
+	then
+		scoreHolder.addHardConstraintMatch(kcontext, 1);
+end
